@@ -1,0 +1,40 @@
+﻿@model AjaxChat.Models.ChatModel
+@{
+    ViewBag.Title = "Чат на Ajax и JQuery";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<br />
+<div class="row">
+    <div id="Username">
+    </div>
+    <div id="LastRefresh">
+    </div>
+    <div class="container" id="container">
+            
+        <div class="form-horizontal" id="loginBlock">
+            <div class="row">
+                <div class="col-lg-offset-6 col-lg-6 col-xs-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Введите имя" id="txtUserName">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="btnLogin">Войти</button>
+                        </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div>
+        </div>
+    
+    </div>
+    <div id="Error">
+    </div>
+    @Ajax.ActionLink("Login", "Index", new { user = "" },
+        new AjaxOptions { UpdateTargetId = "container", OnFailure = "LoginOnFailure", OnSuccess = "LoginOnSuccess" },
+        new { @id = "LoginButton", @style = "visibility:hidden;" })
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")
+    @Scripts.Render("~/Scripts/chat.js")
+</div>
